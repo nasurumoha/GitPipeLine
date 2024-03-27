@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Web Suite" verbose="0" parallel="tests" thread-count="100">
+	<listeners>
+        <listener class-name="com.quantum.listeners.QuantumReportiumListener"/>
+	</listeners>
+	<listeners>
+        <listener class-name="listeners.CustomTestListener"/>
+    </listeners>
+
+	<test name=" RetryLoginLogout Test" enabled="true">
+
+        <parameter name="env.resources" value="src/main/resources/common"/>
+        <groups>
+			<run>
+				<include name="@RetryLoginLogout" />
+			</run>
+		</groups>
+		<classes>
+			<class
+				name="com.qmetry.qaf.automation.step.client.gherkin.GherkinScenarioFactory" />
+		</classes>
+	</test>
+</suite>

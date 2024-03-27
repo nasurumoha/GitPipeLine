@@ -1,2 +1,0 @@
-clock.mainscreen.alarm.btn=xpath=//*[@content-desc="Alarm Tab 1 of 4"]
-clock.mainscreen.worldclock.btn=xpath=//*[lower-case(@content-desc)="world clock tab 2 of 4"]
