@@ -19,5 +19,4 @@ jobs:
       
     - name: Download WebDriver binaries
       run: mvn clean test
-
     
