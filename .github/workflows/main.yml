@@ -17,6 +17,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-    - name: Download WebDriver binaries
+    - name: Test with Maven
       run: mvn clean test
     
