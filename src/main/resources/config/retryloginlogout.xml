@@ -2,9 +2,8 @@
 <suite name="Web Suite" verbose="0" parallel="tests" thread-count="100">
 	<listeners>
         <listener class-name="com.quantum.listeners.QuantumReportiumListener"/>
-	</listeners>
-	<listeners>
-        <listener class-name="listeners.CustomTestListener"/>
+        <!--<listener class-name="listeners.CustomTestListener"/>-->
+         <listener class-name="listeners.CustomeTestListenerUpdated"/>
     </listeners>
 
 	<test name=" RetryLoginLogout Test" enabled="true">

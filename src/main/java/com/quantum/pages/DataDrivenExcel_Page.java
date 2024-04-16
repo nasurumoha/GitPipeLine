@@ -16,11 +16,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.qmetry.qaf.automation.ui.WebDriverBaseTestPage;
 import com.qmetry.qaf.automation.ui.api.PageLocator;
 import com.qmetry.qaf.automation.ui.api.WebDriverTestPage;
+import com.qmetry.qaf.automation.ui.webdriver.QAFExtendedWebDriver;
 import excelReader.Xls_Reader;
 
 public class DataDrivenExcel_Page extends WebDriverBaseTestPage<WebDriverTestPage> {
-
-    public void loginExcel() throws IOException {
+	
+    public void loginExcel() throws IOException, InterruptedException {
 
         driver.get("https://codenboxautomationlab.com/registration-form/");
 
@@ -82,14 +83,7 @@ public class DataDrivenExcel_Page extends WebDriverBaseTestPage<WebDriverTestPag
                 WebElement knowAboutElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"nf-field-23-wrap\"]/div[2]/ul/li[\" + rowNum + \"]")));
                 knowAboutElement.click();
 
-                WebElement register = driver.findElement(By.id("nf-field-15"));
-                register.click();
-                
-                Thread.sleep(10000);
-
-                // Wait for registration success message
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(), 'Your registration is completed.')]")));
-
+              
                 String status = "Pass";
 
                 XSSFRow dataRow = outputSheet.createRow(rowNum - 1);
@@ -114,6 +108,14 @@ public class DataDrivenExcel_Page extends WebDriverBaseTestPage<WebDriverTestPag
                 reader.setCellData(sheetName, "Status", rowNum, status);
             }
         }
+        WebElement register = driver.findElement(By.id("nf-field-15"));
+        register.click();
+        
+        Thread.sleep(10000);
+
+        // Wait for registration success message
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[contains(text(), 'Your registration is completed.')]")));
+
 
         FileOutputStream outputStream = new FileOutputStream("OutputExcel.xlsx");
         outputWorkbook.write(outputStream);

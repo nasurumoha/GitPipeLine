@@ -9,7 +9,7 @@ import cucumber.api.java.en.Given;
 public class dataDrivenXCELSteps extends DataDrivenExcel_Page {
 
 	@Given("user able to login the application with valid credentials")
-	public void user_able_to_login_the_application_with_valid_credentials() throws IOException {
+	public void user_able_to_login_the_application_with_valid_credentials() throws IOException, InterruptedException {
 		loginExcel();
 	}
 }

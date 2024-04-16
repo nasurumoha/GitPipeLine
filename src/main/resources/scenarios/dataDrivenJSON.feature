@@ -6,6 +6,6 @@ Given user able to login the "<application>" with valid credentials
 
 Examples:
 |application|
-#|DemoSite| 
+|DemoSite| 
 |DemoSitee|
 

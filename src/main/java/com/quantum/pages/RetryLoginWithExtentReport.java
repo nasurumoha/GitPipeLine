@@ -47,7 +47,7 @@ public class RetryLoginWithExtentReport extends WebDriverBaseTestPage<WebDriverT
 	    private static ExtentTest logger;
 	    
 	    public void loginLogoutTest() throws InterruptedException {
-	        initializeExtentReport();
+	    	initializeExtentReport();
 	        int attempts = 0;
 	        boolean loginSuccess = false;  
 
@@ -58,23 +58,17 @@ public class RetryLoginWithExtentReport extends WebDriverBaseTestPage<WebDriverT
 	            	logout();
 	                loginSuccess = true;
 	            } else {
-	                try {
-	                    Thread.sleep(1000);
-	                } catch (InterruptedException e) {
-	                    e.printStackTrace();
-	                }
+	            	System.out.println("Login attempt " + attempts + " failed.");
 	            }
 	        }
 	        if (!loginSuccess) {
 	            String report = "Login failed for " + MAX_ATTEMPTS + " consecutive attempts.";
-	            System.out.println("Login attempt " + attempts + " failed.");
+	            System.out.println("Login failed for " + attempts + " consecutive attempts.");
 	            logger.log(Status.FAIL, report);
 	            extent.flush();
 	            sendEmailWithReport();
 	        }
-	        else {
 	        	 extent.flush();
-	        }
 	    }
 
 	    public static void initializeExtentReport() {
@@ -89,9 +83,14 @@ public class RetryLoginWithExtentReport extends WebDriverBaseTestPage<WebDriverT
 	    	usersname.sendKeys(USERNAME);
 	    	passsword.sendKeys(PASSWORD);
 	        submit.click();
-	        Thread.sleep(10000);
+	        Thread.sleep(1000);
 	        logger.log(Status.INFO, "Attempting login with username: " + username);
-	        return true ;
+	        String verifyMessage = "Congratulations student. You successfully logged in!";
+	        if (verifyMessage.equals("Congratulations student. You successfully logged in!")) {
+	            return true;
+	        } else {
+	            return false;
+	        }
 	    }
 
 	    public static void verifyAndGenerateReport() {
@@ -104,10 +103,8 @@ public class RetryLoginWithExtentReport extends WebDriverBaseTestPage<WebDriverT
 	       Assert.assertEquals(verifyMessage,"Congratulations student. You successfully logged in!");
 	       logger.log(Status.PASS, "Login and homepage verification successful.");
 	       }    
-	       
-	       else {
-	       }
 }
+
 	    public static void logout() {
 	        logout.click();
 	        logger.log(Status.INFO, "Logging out");
